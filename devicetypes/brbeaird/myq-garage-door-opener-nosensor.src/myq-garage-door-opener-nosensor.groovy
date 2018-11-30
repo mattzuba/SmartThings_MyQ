@@ -21,6 +21,7 @@ metadata {
 		capability "Door Control"
 		capability "Actuator"
         //capability "Health Check" Will be needed eventually for new app compatability but is not documented well enough yet
+        capability "Switch"
         
         attribute "OpenButton", "string"
         attribute "CloseButton", "string"
@@ -67,6 +68,14 @@ def open()  {
 def close() {
     closePrep()
     parent.sendCommand(this, "desireddoorstate", 0) 
+}
+
+def on() {
+	open()
+}
+
+def off() {
+	close()
 }
 
 def openPrep(){
